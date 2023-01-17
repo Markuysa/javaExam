@@ -25,15 +25,27 @@ public class LinkedIntList {
     public void removeDuplicates(){
         var firstEntry = this.root;
         var secondEntry = this.root.next;
+        LinkedIntListNode prev = this.root;
         while (firstEntry!=null){
-            while(secondEntry!=null){
+            while(secondEntry!=null && prev!=null){
                 if (firstEntry.data == secondEntry.data){
-                    var temp = secondEntry;
-                    secondEntry = secondEntry.next;
+                    prev.next  = secondEntry.next;
+                }
+                else{
+                    prev=prev.next;
                 }
                 secondEntry = secondEntry.next;
             }
+            firstEntry = firstEntry.next;
+            prev = firstEntry;
+            if (firstEntry!=null){
+                secondEntry = firstEntry.next;
+            }else{
+                secondEntry = null;
+            }
+
         }
+
     }
 
 
